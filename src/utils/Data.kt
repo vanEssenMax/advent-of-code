@@ -2,6 +2,7 @@ package utils
 
 import io.github.cdimascio.dotenv.dotenv
 import java.io.File
+import java.io.FileNotFoundException
 import java.net.HttpURLConnection
 import java.net.URL
 import java.time.Year
@@ -15,24 +16,34 @@ import java.time.Year
  * @param year Year as integer (format: `2023`, default: current year)
  * @param targetDir Path as string (default: `src/y$year/data`)
  * @param fileNameFormat Format as string (default: `day$day`)
- * @param fileExtension Extension as string (default: `text`)
+ * @param fileExtension Extension as string (default: `txt`)
+ * @param prefix Prefix as string (default: `null`)
+ * @param suffix Suffix as string (default: `null`)
  *
  * @return `List<String>`
  * ---
  * @author Max van Essen
  * @see <a href="https://github.com/vanEssenMax/advent-of-code">★</a> <a href="https://adventofcode.com">AdventOfCode.com</a>
  */
-fun getInput(
+fun get(
     day: Int,
     year: Int = Year.now().value,
     targetDir: String = "src/y$year/data",
-    fileNameFormat: String = "day$day",
-    fileExtension: String = "txt"
+    fileNameFormat: String = "Day$day",
+    fileExtension: String = "txt",
+    prefix: String? = null,
+    suffix: String? = null,
 ): List<String> {
-    val file = File(targetDir, "$fileNameFormat.$fileExtension")
+    val file = File(targetDir, "${prefix.orEmpty()}$fileNameFormat${suffix.orEmpty()}.$fileExtension")
+
 
     // Check if input already exists, if so don't import
     if (!file.exists()) {
+        // If suffix or prefix was used while locating the file throw an error
+        if (!suffix.isNullOrEmpty() || !prefix.isNullOrEmpty()) {
+            throw FileNotFoundException("Could not find ${file.path}")
+        }
+
         println("\uD83C\uDF84\u001b[38;5;220mDay $day (y$year) missing, downloading from AdventOfCode.com...\u001B[0m")
         // Create directories if none exist
         File(file.parent).mkdirs()
