@@ -18,7 +18,6 @@ import java.time.Year
  * @param format Format as string (default: `day$day`)
  * @param extension Extension as string (default: `txt`)
  *
- * @return `List<String>`
  * ---
  * @author Max van Essen
  * @see <a href="https://github.com/vanEssenMax/advent-of-code">★</a> <a href="https://adventofcode.com">AdventOfCode.com</a>
@@ -30,6 +29,12 @@ class Advent(
     private val format: String = "Day$day",
     private val extension: String = "txt",
 ) {
+    /**
+     * Get local input data if available; otherwise, it requests,
+     * saves, and returns the input data from AdventOfCode.com.
+     *
+     * @return `List<String>`
+     */
     fun data(): List<String> {
         val file = File(targetDir, "$format.$extension")
 
@@ -57,6 +62,13 @@ class Advent(
         return file.readLines()
     }
 
+    /**
+     * Get local input companion data if available.
+     *
+     * @param suffix Suffix as string
+     *
+     * @return `List<String>`
+     */
     fun data(suffix: String): List<String> {
         val file = File(targetDir, "$format${suffix}.$extension")
 
