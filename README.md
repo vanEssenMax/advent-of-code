@@ -1,6 +1,5 @@
 <p align="center"><code>Kotlin</code> <code>Christmas-2023</code></p>
-<p align="center">
-<h1 align="center"><p>Advent of Code</p></h1>
+<h1 align="center">Advent of Code</h1>
 <br />
 <p align="center">Welcome to my <a href="https://adventofcode.com">Advent of Code</a> project, do checkout my solutions. The solutions will (most likely) be written in <a href="https://kotlinlang.org">Kotlin</a>.</p>
 
