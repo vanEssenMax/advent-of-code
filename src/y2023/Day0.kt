@@ -16,7 +16,7 @@ fun main() {
     val advent = Advent(day = 1)
 
     // Test if implementation meets criteria from the description, like:
-    val testInput = advent.data(suffix = "_test")
+    val testInput = advent.data("test")
     check(part1(testInput) == 1)
 
     val input = advent.data()
