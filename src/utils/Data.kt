@@ -15,8 +15,8 @@ import java.time.Year
  * @param day Day as integer (min: `1`, max: `31`)
  * @param year Year as integer (format: `2023`, default: current year)
  * @param targetDir Path as string (default: `src/y$year/data`)
- * @param fileNameFormat Format as string (default: `day$day`)
- * @param fileExtension Extension as string (default: `txt`)
+ * @param format Format as string (default: `day$day`)
+ * @param extension Extension as string (default: `txt`)
  * @param prefix Prefix as string (default: `null`)
  * @param suffix Suffix as string (default: `null`)
  *
@@ -29,12 +29,12 @@ fun get(
     day: Int,
     year: Int = Year.now().value,
     targetDir: String = "src/y$year/data",
-    fileNameFormat: String = "Day$day",
-    fileExtension: String = "txt",
+    format: String = "Day$day",
+    extension: String = "txt",
     prefix: String? = null,
     suffix: String? = null,
 ): List<String> {
-    val file = File(targetDir, "${prefix.orEmpty()}$fileNameFormat${suffix.orEmpty()}.$fileExtension")
+    val file = File(targetDir, "${prefix.orEmpty()}$format${suffix.orEmpty()}.$extension")
 
 
     // Check if input already exists, if so don't import
@@ -60,7 +60,7 @@ fun get(
             }
             println("\uD83C\uDF84\u001b[32mDay $day (y$year) saved!\u001b[0m\n")
         } catch (_: Exception) {
-            throw Exception("Could not get input for $year/12/$day from AdventOfCode.com")
+            throw Exception("Could not get input for Day $day (y$year) from AdventOfCode.com")
         }
     }
     return file.readLines()
