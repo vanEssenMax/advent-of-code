@@ -63,14 +63,14 @@ class Advent(
     }
 
     /**
-     * Get local input companion data if available.
+     * Get local input companion data by identifier.
      *
-     * @param suffix Suffix as string
+     * @param identifier Identifier as string
      *
      * @return `List<String>`
      */
-    fun data(suffix: String): List<String> {
-        val file = File(targetDir, "$format${suffix}.$extension")
+    fun data(identifier: String): List<String> {
+        val file = File(targetDir, "${format}_${identifier}.$extension")
 
         if (!file.exists())
             throw FileNotFoundException("Could not find ${file.path}")
