@@ -4,19 +4,17 @@ import utils.Advent
 
 // Day 1
 fun main() {
+
     fun part1(input: List<String>): Int {
         var total = 0;
         for (line in input) {
             val (_, numbers) = line.toCharArray().partition { it.isLetter() }
 
-            if (numbers.size > 1) {
-                total += "${numbers.first()}${numbers.last()}".toInt()
-            } else if (numbers.size == 1) {
-                total += "${numbers.first()}${numbers.first()}".toInt()
-            }
+            total += "${numbers.first()}${numbers.last()}".toInt()
         }
         return total;
     }
+
 
     fun part2(input: List<String>): Int {
         var total = 0;
@@ -44,23 +42,17 @@ fun main() {
 
                     for (entry in numberMap.entries) {
                         val index = word.lastIndexOf(entry.key);
-                        if(word.contains(entry.key) && !indexes.contains(index)) {
+                        if (word.contains(entry.key) && !indexes.contains(index)) {
                             indexes.add(index)
                             data.add(entry.value)
                         }
                     }
-                }else {
+                } else {
                     data += "$char".toInt()
                 }
-
             }
 
-            if (data.size > 1) {
-                total += "${data.first()}${data.last()}".toInt()
-            } else if (data.size == 1) {
-                total += "${data.first()}${data.first()}".toInt()
-            }
-
+            total += "${data.first()}${data.last()}".toInt()
         }
         return total;
     }
