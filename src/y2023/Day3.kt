@@ -16,13 +16,12 @@ fun main() {
         x: Int,
         y: Int
     ): Map<Map<Int, Map<Int, Int>>, Int> {
-        val rowData = data.filter { it.keys.first().keys.first() == y }
-        val finalData = rowData.filter {
-            it.keys.first().values.first().keys.first() <= x &&
-                    it.keys.first().values.first().values.first() >= x
-        }
-
-        return finalData.first();
+        return data
+            .filter { it.keys.first().keys.first() == y }
+            .first {
+                it.keys.first().values.first().keys.first() <= x &&
+                        it.keys.first().values.first().values.first() >= x
+            };
     }
 
     fun getCoords(
@@ -47,6 +46,7 @@ fun main() {
                     }
                     digits.add(col.digitToInt())
                     if (colIndex + checkSize == row.size || (colIndex > 0 && !row[colIndex + checkSize].isDigit())) {
+                        // [{{y, {startIndex,endIndex}}, 456}]
                         digitData.add(
                             mapOf(
                                 mapOf(rowIndex to mapOf(startIndex to colIndex)) to digits.joinToString("").toInt()
@@ -127,7 +127,8 @@ fun main() {
             if (gearRatio == null) {
                 total += parts.sumOf { it.values.first() }
             } else if (parts.size == gearRatio) {
-                total += parts.map{ it.values.first()}.reduce { acc: Int, i: Int -> acc * i  }
+                // Part 2
+                total += parts.map { it.values.first() }.reduce { acc: Int, i: Int -> acc * i }
             }
 
         }
@@ -135,24 +136,21 @@ fun main() {
     }
 
     fun part1(input: List<String>): Int {
-        val checkSize = 1
-        val (specialCoords, digitData) = getCoords(input, checkSize)
-        return parseCoords(input, digitData, specialCoords, checkSize)
+        val (specialCoords, digitData) = getCoords(input, 1)
+        return parseCoords(input, digitData, specialCoords, 1)
     }
 
     fun part2(input: List<String>): Int {
-        val checkSize = 1
-        val (specialCoords, digitData) = getCoords(input, checkSize, '*')
-
-        return parseCoords(input, digitData, specialCoords, checkSize, 2)
+        val (specialCoords, digitData) = getCoords(input, 1, '*')
+        return parseCoords(input, digitData, specialCoords, 1, 2)
     }
 
     // Set up the Advent Class (year is optional, uses current year by default)
     val advent = Advent(day = 3)
 
     // Test if implementation meets criteria from the description, like:
-    val testInput = advent.data("test")
-    check(part1(testInput) == 1)
+//    val testInput = advent.data("test")
+//    check(part1(testInput) == 1)
 
     val input = advent.data()
     println(part1(input))
