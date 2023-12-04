@@ -47,7 +47,7 @@ fun main() {
         return parsePoints(getScratchCards(input))
     }
 
-    fun recursiveScratchCards(
+    fun parseTotalScratchCards(
         stack: List<ScratchCard>
     ): Int {
         val stacks = stack.map { 1 }.toMutableList()
@@ -62,8 +62,7 @@ fun main() {
     }
 
     fun part2(input: List<String>): Int {
-        val cards = getScratchCards(input)
-        return recursiveScratchCards(cards)
+        return parseTotalScratchCards(getScratchCards(input))
     }
 
     // Set up the Advent Class (year is optional, uses current year by default)
