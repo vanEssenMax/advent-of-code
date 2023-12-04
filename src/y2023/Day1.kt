@@ -12,12 +12,12 @@ fun main() {
 
             total += "${numbers.first()}${numbers.last()}".toInt()
         }
-        return total;
+        return total
     }
 
 
     fun part2(input: List<String>): Int {
-        var total = 0;
+        var total = 0
 
         val numberMap: Map<String, Int> = mapOf(
             "one" to 1,
@@ -54,7 +54,7 @@ fun main() {
 
             total += "${data.first()}${data.last()}".toInt()
         }
-        return total;
+        return total
     }
 
     // Set up the Advent Class (year is optional, uses current year by default)
