@@ -1,5 +1,5 @@
 plugins {
-    kotlin("jvm") version "1.9.20"
+    kotlin("jvm") version "2.1.0"
 }
 
 repositories {
@@ -7,7 +7,7 @@ repositories {
 }
 
 dependencies {
-    implementation("io.github.cdimascio:dotenv-kotlin:6.4.1")
+    implementation("io.github.cdimascio:dotenv-kotlin:6.4.2")
 }
 
 tasks {

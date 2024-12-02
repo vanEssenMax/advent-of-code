@@ -1,4 +1,4 @@
-package y2023
+package y2024
 
 import utils.Advent
 
